@@ -1,0 +1,26 @@
+@import "bourbon";
+
+// Set Bootstrap variables
+$textColor:                 #222;
+$navbarBackground:          #fff;
+$navbarBackgroundHighlight: #fff;
+$navbarLinkColor:           #222;
+$navbarLinkColorHover:      #ff0000;
+
+@import "bootstrap";
+
+body { margin-top: 20px; }
+
+// Override Bootstrap navbar
+
+.navbar {
+  .container { width: 940px; }
+  .navbar-inner { @include box-shadow(none); }
+  .nav > li > a {
+    font-size: 1em;
+    font-size: 1rem;
+    line-height: 2.25;
+    font-weight: bold;
+    text-shadow: none;
+  }
+}
