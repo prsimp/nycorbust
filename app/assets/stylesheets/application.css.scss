@@ -1,0 +1,43 @@
+@import "bourbon";
+
+// Set Bootstrap variables
+$textColor:                 #222;
+$navbarBackground:          #fff;
+$navbarBackgroundHighlight: #fff;
+$navbarLinkColor:           #222;
+$navbarLinkColorHover:      #ff0000;
+
+@import "bootstrap";
+
+/////////////////////
+// Global Styles
+/////////////////////
+
+body { margin-top: 20px; }
+
+// Override Bootstrap navbar
+.navbar {
+  .container { width: 940px; }
+  .navbar-inner { @include box-shadow(none); }
+  .nav > li > a {
+    font-size: 1em;
+    font-size: 1rem;
+    line-height: 2.25;
+    font-weight: bold;
+    text-shadow: none;
+  }
+}
+
+/////////////////////
+// Home Page Styles
+/////////////////////
+
+// Override Bootstrap Hero Unit
+.hero-unit {
+  background: image-url("nyc.jpg");
+  border: 1px solid #bbb;
+  padding: 32px 60px;
+
+  p  { font-weight: bold; }
+  p.cta { margin: 16px 0; }
+}
