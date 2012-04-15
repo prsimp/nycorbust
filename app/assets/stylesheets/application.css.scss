@@ -16,6 +16,7 @@ $navbarLinkColorHover:      #ff0000;
 body { margin-top: 20px; }
 
 // Override Bootstrap navbar
+
 .navbar {
   .container { width: 940px; }
   .navbar-inner { @include box-shadow(none); }
@@ -28,11 +29,19 @@ body { margin-top: 20px; }
   }
 }
 
+// Inline checkbox/label hack
+
+input[type="checkbox"].inline-checkbox {
+  float: left;
+  margin-right: 10px;
+}
+
 /////////////////////
 // Home Page Styles
 /////////////////////
 
 // Override Bootstrap Hero Unit
+
 .hero-unit {
   background: image-url("nyc.jpg");
   border: 1px solid #bbb;
@@ -41,3 +50,9 @@ body { margin-top: 20px; }
   p  { font-weight: bold; }
   p.cta { margin: 16px 0; }
 }
+
+/////////////////////
+// Login Page Styles
+/////////////////////
+
+.row.login { padding-top: 25px; }

@@ -1,4 +1,14 @@
 Nycorbust::Application.routes.draw do
+
+  resources :sessions, only: [:new, :create, :destroy]
+
+  match '/login'  => 'sessions#new'
+  match '/logout' => 'sessions#destroy'
+
+  namespace :admin do
+    resources :users
+  end
+
   root to: 'pages#home'
 
   # The priority is based upon order of creation:
