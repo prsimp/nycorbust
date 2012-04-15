@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-# describe Admin::UsersController do
+# describe Admin::CategoriesController do
 
 #   describe "GET 'index'" do
 #     it "returns http success" do

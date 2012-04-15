@@ -2,6 +2,7 @@ class SessionsController < ApplicationController
 
   #TODO: Change these paths once admin panel is created
   def new
+    flash[:message] = "You are already signed in."
     redirect_to admin_users_path if signed_in?
   end
 

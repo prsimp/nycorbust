@@ -1,0 +1,20 @@
+= provide :title, "Edit #{@category.name}"
+
+.row
+  .span8.offset2
+    = form_for @category, url: { namespace: :admin, action: :create } do |f|
+      = render 'shared/error_messages', object: f.object
+      %fieldset
+        %legend Edit Category
+        .control-group
+          = f.label :name, class: "control-label"
+          .controls
+            = f.text_field :name, class: "span8"
+        .pull-right
+          = f.submit "Save Changes", class: "btn btn-large btn-success"
+          = link_to "Cancel", admin_categories_path, class: "btn btn-large"
+
+    %h3 Current Categories
+    %ul.unstyled
+      - @categories.each do |cat|
+        %li= cat.name

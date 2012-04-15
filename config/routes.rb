@@ -1,13 +1,15 @@
 Nycorbust::Application.routes.draw do
 
+  resources :categories, only: [:index, :show]
   resources :sessions, only: [:new, :create, :destroy]
-
-  match '/login'  => 'sessions#new'
-  match '/logout' => 'sessions#destroy'
 
   namespace :admin do
     resources :users
+    resources :categories, except: [:show]
   end
+
+  match '/login'  => 'sessions#new'
+  match '/logout' => 'sessions#destroy'
 
   root to: 'pages#home'
 
