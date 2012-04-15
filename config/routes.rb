@@ -1,4 +1,9 @@
 Nycorbust::Application.routes.draw do
+
+  namespace :admin do
+    resources :users
+  end
+
   root to: 'pages#home'
 
   # The priority is based upon order of creation:
