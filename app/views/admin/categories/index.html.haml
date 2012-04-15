@@ -1,0 +1,21 @@
+= provide :title, "Categories Admin"
+
+.row
+  .span12
+    .page-header
+      %h1 All Categories
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th Name
+          %th Active Items
+          %th Sold Items
+          %th(colspan=2) Actios
+      %tbody
+        - @categories.each do |cat|
+          %tr
+            %td= cat.name
+            %td #
+            %td #
+            %td= link_to "View", category_path(cat), class: "btn btn-primary"
+            %td= link_to "Edit", edit_admin_category_path(cat), class: "btn"
