@@ -1,11 +1,11 @@
-= provide :title, "New User"
+= provide :title, "Edit User"
 
 .row
   .span6.offset3.well
-    = form_for @user, url: { namespace: :admin, action: :create } do |f|
+    = form_for @user do |f|
       = render 'shared/error_messages', object: f.object
       %fieldset
-        %legend Add New User
+        %legend= "Edit #{@user.name}"
         .control-group
           = f.label :name
           .controls
@@ -23,5 +23,5 @@
           .controls
             = f.password_field :password_confirmation, class: "span6"
         .pull-right
-          = f.submit "Create User", class: "btn btn-large btn-success"
-          = link_to "Cancel", admin_users_path, class: "btn btn-large"
+          = f.submit "Edit User", class: "btn btn-large btn-success"
+          = link_to "Cancel", users_path, class: "btn btn-large"

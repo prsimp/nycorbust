@@ -2,7 +2,7 @@
 
 .row
   .span8.offset2
-    = form_for @category, url: { namespace: :admin, action: :create } do |f|
+    = form_for @category do |f|
       = render 'shared/error_messages', object: f.object
       %fieldset
         %legend Add New Category

@@ -1,0 +1,31 @@
+= provide :title, "New Item"
+
+.row
+  .span8.offset2
+    = form_for @item do |item|
+      = render 'shared/error_messages', object: item.object
+      %fieldset
+        %legend Add New Item
+        = render 'form_fields', :item => item
+
+        %legend Item Images
+        .row
+          .span4
+            = item.fields_for :item_images, :item_images, html: { multipart: true } do |image|
+              .control-group.images
+                .controls
+                  = image.file_field :photo
+          .span4
+            %h4 Notes
+            %p
+              Each item may have up to four images. The first image will be used
+              as the primary image for each item in the index display (and possibly
+              for the category index for that item's category). You may add images
+              later by editing an item.
+
+        .main-controls
+          .pull-right
+            = item.submit "Add Item", class: "btn btn-success btn-large"
+            = link_to "Cancel", items_path, class: "btn btn-large"
+= debug @item
+= debug @item.item_images

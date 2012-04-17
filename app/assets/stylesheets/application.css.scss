@@ -1,6 +1,7 @@
 @import "bourbon";
 
 // Set Bootstrap variables
+$baseFontFamily:            Helvetica, arial, sans-serif;
 $textColor:                 #222;
 $navbarBackground:          #fff;
 $navbarBackgroundHighlight: #fff;
@@ -36,6 +37,26 @@ input[type="checkbox"].inline-checkbox {
   margin-right: 10px;
 }
 
+// Give items thumbnails a faint inner border
+
+.thumbnail img {
+  border: 1px solid #eee;
+}
+
+// Spacing classes
+
+.space-bottom {
+  margin-bottom: 24px;
+}
+
+// Main form controls
+
+.main-controls {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid #eee;
+}
+
 /////////////////////
 // Home Page Styles
 /////////////////////
@@ -56,3 +77,38 @@ input[type="checkbox"].inline-checkbox {
 /////////////////////
 
 .row.login { padding-top: 25px; }
+
+/////////////////////
+// Item Styles
+/////////////////////
+
+p.description { font-size: 18px; line-height: 1.5; }
+p.price { font-size: 24px; line-height: 1.5; font-weight: bold; }
+
+.item-image {
+  margin-bottom: 24px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid #eee;
+}
+
+td img {
+  padding: 2px;
+  border: 1px solid #DDD;
+  @include border-radius(4px);
+}
+
+/////////////////////
+// Thumbnail Styles
+/////////////////////
+
+.thumb:hover {
+  cursor: pointer;
+  border-color: #aaa;
+  @include box-shadow(0 0 4px 1px rgba(0, 105, 214, 0.25));
+  @include transition(all .2s ease-in 0s);
+}
+
+a.item_display {
+  color: $textColor;
+  text-decoration: none;
+}

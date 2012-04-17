@@ -11,16 +11,37 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120415214112) do
+ActiveRecord::Schema.define(:version => 20120416122813) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "slug"
   end
 
-  add_index "categories", ["slug"], :name => "index_categories_on_slug"
+  create_table "item_images", :force => true do |t|
+    t.integer  "item_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+  end
+
+  add_index "item_images", ["item_id"], :name => "index_item_images_on_item_id"
+
+  create_table "items", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "category_id"
+    t.decimal  "price",       :precision => 8, :scale => 2
+    t.string   "url"
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+  end
+
+  add_index "items", ["category_id"], :name => "index_items_on_category_id"
 
   create_table "users", :force => true do |t|
     t.string   "email"

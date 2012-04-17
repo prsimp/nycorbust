@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class UsersController < ApplicationController
   #TODO: Clean out kruft from rails g (CSS, JS etc.)
   def index
     @users = User.all
@@ -12,7 +12,7 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])
       flash[:success] = "User succesffully updated!"
-      redirect_to 'index'
+      redirect_to users_path
     else
       render 'edit'
     end
@@ -30,7 +30,7 @@ class Admin::UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:success] = "New User Created!"
-      redirect_to admin_users_path
+      redirect_to users_path
     else
       render 'new'
     end
@@ -39,6 +39,6 @@ class Admin::UsersController < ApplicationController
   def destroy
     user = User.find(params[:id]).destroy
     flash[:success] = "#{user.email} successfully deleted."
-    redirect_to 'index'
+    redirect_to users_path
   end
 end

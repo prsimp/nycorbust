@@ -7,8 +7,8 @@
     unbelieveably-tiny apartment. Our loss is your gain. We're selling it all.
     Take a look.
   - button_text = "Help Us Get There &mdash; Buy Our Stuff".html_safe
-  %p= link_to button_text, "#", class: "btn btn-large btn-success"
+  %p= link_to button_text, items_path, class: "btn btn-large btn-success"
 
 .page-header
   %h2 Recently Listed Items
-  // 3 Most recently added items will be displayed here.
+  = render 'shared/image_grid', :items => @items

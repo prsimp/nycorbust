@@ -1,0 +1,12 @@
+.row
+  .span4
+    .thumbnail
+      = image_tag image.object.photo(:medium), alt: @item.name
+  .span4
+    .control-group
+      = image.label :photo, "Choose new image", class: "control-label"
+      .controls
+        = image.file_field :photo
+      - check_box = image.check_box :_destroy, class: "inline-checkbox"
+      = image.label :_destroy, "#{check_box}Remove this image".html_safe, class: "control-label"
+.item-image

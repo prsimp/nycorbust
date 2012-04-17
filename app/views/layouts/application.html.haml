@@ -14,12 +14,16 @@
         .container
           = link_to image_tag("logo.jpg", alt: "NYCorBUST"), root_path, class: "brand"
           %ul.nav.pull-right
-            %li= link_to "All Items", "#"
+            %li= link_to "All Items", items_path
             %li= link_to "By Category", categories_path
             %li= link_to "Contact", "#"
             - if signed_in?
-              %li= link_to "Admin", "#"
+              %li= link_to "Admin", admin_path
               %li= link_to "Logout", logout_path
     .container
       = render 'shared/flash_messages'
       = yield
+
+      - if Rails.env.development?
+        %h3 Rails Debug Info
+        = debug(params)

@@ -1,0 +1,27 @@
+= provide :title, @item.name
+
+.page-header
+  %h1= @item.name
+
+.row.space-bottom
+  .span8.primary-image
+    .thumbnail
+      = image_tag @item.display_image(:large), id: "primary-image", alt: @item.name
+  .span4
+    %p.description= @item.description
+    %p.price= number_to_currency(@item.price)
+    %p
+      = link_to "Inquire About This Item", "#", class: "btn btn-large btn-success"
+      = link_to "Back", "#", class: "btn btn-large"
+    %p
+      = link_to "See this item on Craigslist", @item.url
+
+- if @item.has_many_images?
+  .row.space-bottom
+    - @item.item_images.each do |image|
+      = render 'thumbnail', :image => image
+
+
+
+
+    //- if @item.has_many_images?
