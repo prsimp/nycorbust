@@ -25,7 +25,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @item.build_images(@item.item_images.count)
+    @item.build_images
   end
 
   def create

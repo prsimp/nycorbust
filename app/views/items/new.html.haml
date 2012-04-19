@@ -8,21 +8,17 @@
         %legend Add New Item
         = render 'form_fields', :item => item
 
-        %legend Item Images
-        .row
-          .span4
-            = item.fields_for :item_images, :item_images, html: { multipart: true } do |image|
-              .control-group.images
-                .controls
-                  = image.file_field :photo
+        %legend Primary Item Image
+        .control-group
+          .controls
+            = item.file_field :primary_image
 
-          .span4
-            %h4 Notes
-            %p
-              Each item may have up to four images. The first image will be used
-              as the primary image for each item in the index display (and possibly
-              for the category index for that item's category). You may add images
-              later by editing an item.
+
+        %legend Additional Item Images
+        = item.fields_for :item_images, :item_images, html: { multipart: true } do |image|
+          .control-group
+            .controls
+              = image.file_field :photo
 
         .main-controls
           .pull-right

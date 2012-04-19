@@ -4,14 +4,32 @@ class Item < ActiveRecord::Base
 
   accepts_nested_attributes_for :item_images, reject_if: :all_blank, allow_destroy: true
 
-  attr_accessible :name, :category_id, :description, :price, :url, :category_name,
-                  :item_images_attributes, :primary_image_id
+  attr_accessible :name,
+                  :description,
+                  :price,
+                  :url,
+                  :category_id,
+                  :category_name,
+                  :primary_image,
+                  :item_images_attributes
 
-  validates :name, :category_id, :description, :price, presence: true
-  validates :name, uniqueness: { case_sensitive: false },
-  length: { maximum: 45 }
-  validates :price, numericality: { greater_than: 0 }
-  validates :item_images, presence: { message: "Items must have at least one image." }
+  has_attached_file :primary_image, { styles: {
+                                        thumb:  "100x100",
+                                        small:  "130x96",
+                                        medium: "290x214",
+                                        large:  "610x450" },
+                                    }.merge(PAPERCLIP_STORAGE_OPTIONS)
+
+  validates :name, :category_id, :description, :price,
+    presence: true
+  validates :name,
+    uniqueness: { case_sensitive: false },
+    length: { maximum: 45 }
+  validates :price,
+    numericality: { greater_than: 0 }
+  validates_attachment_presence :primary_image
+  validates_attachment_size :primary_image,
+    less_than: 3.megabytes
 
   # Returns 'num' number of recently added items
   def self.recently_added(num)
@@ -29,7 +47,7 @@ class Item < ActiveRecord::Base
 
   # Builds item images up to a maximum of 4
   def build_images(current_images = 0)
-    images_to_build = 4 - current_images
+    images_to_build = 3 - current_images
     images_to_build.times { self.item_images.build }
   end
 
@@ -39,14 +57,20 @@ class Item < ActiveRecord::Base
     self.build_images(self.item_images.count)
   end
 
-  # Gets the primary image for an item
-  def display_image(size = :large)
-    self.item_images.first.photo(size) # temporary
-    # ItemImage.where(item_id = self.id, display: true).photo(size)
+  def has_many_images?
+    self.item_images.count > 0
   end
 
-  def has_many_images?
-    self.item_images.count > 1
+  def all_images(size = :small)
+    images = Array.new
+    images << self.primary_image(size)
+    if self.has_many_images?
+      self.item_images.each do |image|
+        images << image.photo(size)
+      end
+    end
+
+    images
   end
 
   def self.sample_by_category(categories)

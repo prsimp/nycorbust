@@ -12,6 +12,6 @@
             %a.item_display(href="/categories/#{category.id}")
               .thumbnail.thumb
                 - if @items.has_key?(category.id)
-                  = image_tag @items[category.id].display_image(:medium), alt: category.name
+                  = image_tag @items[category.id].primary_image(:medium), alt: category.name
                   .caption
                     %h4= category.name

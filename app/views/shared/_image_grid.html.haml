@@ -6,7 +6,7 @@
           %li.span4
             %a.item_display(href="/items/#{item.id}")
               .thumbnail.thumb
-                = image_tag item.display_image(:medium), alt: item.name
+                = image_tag item.primary_image(:medium), alt: item.name
                 .caption
                   %h4
                     = item.name
