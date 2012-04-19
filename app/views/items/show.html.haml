@@ -7,7 +7,7 @@
   .row.space-bottom
     .span8.primary-image
       .thumbnail
-        = image_tag @item.display_image(:large), id: "primary-image", alt: @item.name
+        = image_tag @item.primary_image(:large), id: "primary-image", alt: @item.name
     .span4
       %p.description= @item.description
       %p.price= number_to_currency(@item.price, precision: 0)
@@ -19,7 +19,7 @@
 
   - if @item.has_many_images?
     .row
-      - @item.item_images.each do |image|
+      - @item.all_images.each do |image|
         = render 'thumbnail', :image => image
 
 
