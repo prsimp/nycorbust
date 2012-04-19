@@ -15,6 +15,7 @@
               .control-group.images
                 .controls
                   = image.file_field :photo
+
           .span4
             %h4 Notes
             %p
@@ -27,5 +28,3 @@
           .pull-right
             = item.submit "Add Item", class: "btn btn-success btn-large"
             = link_to "Cancel", items_path, class: "btn btn-large"
-= debug @item
-= debug @item.item_images

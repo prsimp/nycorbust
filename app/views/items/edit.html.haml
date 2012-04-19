@@ -11,7 +11,7 @@
         %legend Item Images
         = item.fields_for :item_images, :item_images, html: { multipart: true } do |image|
           - if image.object.photo.file?
-            = render 'has_image', :image => image
+            = render 'has_image', { :image => image, :item => item }
           - else
             = render 'no_image', :image => image
 

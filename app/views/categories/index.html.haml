@@ -1,7 +1,17 @@
 = provide :title, "All Categories"
 
-.row
-  .span12
-    .page-header
-      %h1 All Categories
-    %h3 Image Grid Goes Here
+.page-header
+  %h1 Items By Category
+
+- @categories.each_slice(3) do |category_row|
+  .row
+    .span12
+      %ul.thumbnails
+        - category_row.each do |category|
+          %li.span4
+            %a.item_display(href="/categories/#{category.id}")
+              .thumbnail.thumb
+                - if @items.has_key?(category.id)
+                  = image_tag @items[category.id].display_image(:medium), alt: category.name
+                  .caption
+                    %h4= category.name

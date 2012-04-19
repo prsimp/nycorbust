@@ -19,4 +19,5 @@ module ApplicationHelper
   def controller_stylesheet?(name)
     File.exists?(File.join("#{Rails.root}", "app", "assets", "stylesheets", "#{name}.css.scss"))
   end
+
 end

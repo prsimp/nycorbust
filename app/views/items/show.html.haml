@@ -3,25 +3,32 @@
 .page-header
   %h1= @item.name
 
-.row.space-bottom
-  .span8.primary-image
-    .thumbnail
-      = image_tag @item.display_image(:large), id: "primary-image", alt: @item.name
-  .span4
-    %p.description= @item.description
-    %p.price= number_to_currency(@item.price)
-    %p
-      = link_to "Inquire About This Item", "#", class: "btn btn-large btn-success"
-      = link_to "Back", "#", class: "btn btn-large"
-    %p
-      = link_to "See this item on Craigslist", @item.url
-
-- if @item.has_many_images?
+.page-header
   .row.space-bottom
-    - @item.item_images.each do |image|
-      = render 'thumbnail', :image => image
+    .span8.primary-image
+      .thumbnail
+        = image_tag @item.display_image(:large), id: "primary-image", alt: @item.name
+    .span4
+      %p.description= @item.description
+      %p.price= number_to_currency(@item.price, precision: 0)
+      %p
+        = link_to "Inquire About This Item", "#", class: "btn btn-large btn-success"
+        = link_to "Back", "#", class: "btn btn-large"
+      %p
+        = link_to "See this item on Craigslist", @item.url
+
+  - if @item.has_many_images?
+    .row
+      - @item.item_images.each do |image|
+        = render 'thumbnail', :image => image
+
+
+- if Category.has_many_items?(@item.category_id)
+  .page-header
+    %h2= "Other Items in #{@item.category_name}"
+  .row
+    - get_related_items(@item).each do |rel_item|
+      = render 'related_item', :item => rel_item
 
 
 
-
-    //- if @item.has_many_images?

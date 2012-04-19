@@ -4,12 +4,14 @@ class Item < ActiveRecord::Base
 
   accepts_nested_attributes_for :item_images, reject_if: :all_blank, allow_destroy: true
 
-  attr_accessible :name, :category_id, :description, :price, :item_images_attributes, :url, :category_name
+  attr_accessible :name, :category_id, :description, :price, :url, :category_name,
+                  :item_images_attributes, :primary_image_id
 
   validates :name, :category_id, :description, :price, presence: true
   validates :name, uniqueness: { case_sensitive: false },
   length: { maximum: 45 }
   validates :price, numericality: { greater_than: 0 }
+  validates :item_images, presence: { message: "Items must have at least one image." }
 
   # Returns 'num' number of recently added items
   def self.recently_added(num)
@@ -45,6 +47,16 @@ class Item < ActiveRecord::Base
 
   def has_many_images?
     self.item_images.count > 1
+  end
+
+  def self.sample_by_category(categories)
+    items = Hash.new
+    categories.each do |cat|
+      item = Item.find_by_category_id(cat.id)
+      items[cat.id] = item unless item.nil?
+    end
+
+    items
   end
 
 end

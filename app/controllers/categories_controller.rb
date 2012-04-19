@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.all
+    @categories = Category.order("name asc").all
+    @items = Item.sample_by_category(@categories)
   end
 
   def show
