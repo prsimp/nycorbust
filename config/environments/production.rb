@@ -1,6 +1,22 @@
 Nycorbust::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
+  PAPERCLIP_STORAGE_OPTIONS = { storage: :s3,
+                                bucket: ENV['S3_BUCKET'],
+                                s3_credentials: { access_key_id: ENV['S3_KEY'],
+                                                  secret_access_key: ENV['S3_SECRET'] }}
+
+  # Action Mailer Settings
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:        "stmp.sendgrid.com",
+    port:           587,
+    authentication: :plain,
+    user_name:      ENV["SENDGRID_USERNAME"],
+    password:       ENV["SENDGRID_PASSWORD"],
+    domain:         "heroku.com"
+  }
+
   # Code is not reloaded between requests
   config.cache_classes = true
 

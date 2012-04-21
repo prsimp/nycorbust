@@ -1,0 +1,13 @@
+= provide :title, "All Categories"
+
+.page-header
+  %h1
+    Items By Category
+    - if signed_in?
+      %span.pull-right
+        = link_to "Add Categoy", new_category_path, class: "btn btn-success"
+
+- if signed_in?
+  = render 'admin'
+- else
+  = render 'category_grid'

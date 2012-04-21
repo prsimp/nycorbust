@@ -1,0 +1,14 @@
+= provide :title, "All Items"
+
+.page-header
+  %h1
+    All Items
+    - if signed_in?
+      %span.pull-right
+        = link_to "Add Item", new_item_path, class: "btn btn-success"
+
+
+- if signed_in?
+  = render 'admin', :items => @items
+-else
+  = render 'shared/image_grid', :items => @items

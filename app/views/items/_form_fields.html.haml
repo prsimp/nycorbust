@@ -1,0 +1,23 @@
+.control-group
+  = item.label :name, class: "control-label"
+  .controls
+    = item.text_field :name, class: "span8"
+.control-group
+  = item.label :description, class: "control-label"
+  .controls
+    = item.text_area :description, rows: "6", class: "span8"
+.control-group
+  = item.label :category_name, "Category", class: "control-label"
+  .controls
+    = item.text_field :category_name, { class: "span8", data: {autocomplete_src: Category.order(:name).map(&:name)}}
+.row
+  .span4
+    .control-group
+      = item.label :price, class: "control-label"
+      .controls
+        = item.text_field :price, class: "span4"
+  .span4
+    .control-group
+      = item.label :url, "Craigslist URL", class: "control-label"
+      .controls
+        = item.text_field :url, class: "span4"

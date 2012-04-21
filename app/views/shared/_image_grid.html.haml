@@ -1,0 +1,13 @@
+- items.each_slice(3) do |items_row|
+  .row
+    .span12
+      %ul.thumbnails
+        - items_row.each do |item|
+          %li.span4
+            %a.item_display(href="/items/#{item.id}")
+              .thumbnail.thumb
+                = image_tag item.primary_image(:medium), alt: item.name
+                .caption
+                  %h4
+                    = item.name
+                    .span.pull-right= number_to_currency(item.price, precision: 0)

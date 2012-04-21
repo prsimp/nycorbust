@@ -1,0 +1,9 @@
+- readable_object = object.class.to_s.underscore.humanize.downcase
+- num_errors = pluralize(object.errors.count, "error")
+
+- if object.errors.any?
+  .alert.alert-error
+    %p Oh no! You're #{readable_object} contained #{num_errors}! Please fix the following and try again.
+    %ul
+      - object.errors.full_messages.each do |error_msg|
+        %li= error_msg
