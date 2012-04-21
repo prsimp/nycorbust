@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  skip_before_filter :authorized_user, only: [:index, :show]
+
   def index
     @categories = Category.order("name asc").all
     @items = Item.sample_by_category(@categories)

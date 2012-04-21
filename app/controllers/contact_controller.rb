@@ -1,5 +1,6 @@
 class ContactController < ApplicationController
   before_filter :check_message, only: :create
+  skip_before_filter :authorized_user
 
   def new
   end

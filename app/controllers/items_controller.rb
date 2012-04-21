@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
 
+  skip_before_filter :authorized_user, only: [:index, :show]
+
   def index
     @items = Item.order("name asc").all
   end

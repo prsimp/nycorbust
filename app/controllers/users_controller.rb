@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  #TODO: Clean out kruft from rails g (CSS, JS etc.)
   def index
     @users = User.all
   end
