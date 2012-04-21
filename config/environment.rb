@@ -5,4 +5,4 @@ require File.expand_path('../application', __FILE__)
 Nycorbust::Application.initialize!
 
 # App Version
-APP_VERSION = 1.0.0
+APP_VERSION = "1.0.1"
