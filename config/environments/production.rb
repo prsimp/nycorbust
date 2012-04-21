@@ -6,6 +6,17 @@ Nycorbust::Application.configure do
                                 s3_credentials: { access_key_id: ENV['S3_KEY'],
                                                   secret_access_key: ENV['S3_SECRET'] }}
 
+  # Action Mailer Settings
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:        "stmp.sendgrid.com",
+    port:           587,
+    authentication: :plain,
+    user_name:      ENV["SENDGRID_USERNAME"],
+    password:       ENV["SENDGRID_PASSWORD"],
+    domain:         "heroku.com"
+  }
+
   # Code is not reloaded between requests
   config.cache_classes = true
 

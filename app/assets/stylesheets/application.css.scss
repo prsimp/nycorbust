@@ -57,6 +57,23 @@ input[type="checkbox"].inline-checkbox {
   border-top: 1px solid #eee;
 }
 
+// FAQ
+
+.faq-title {
+  text-align: center;
+  text-decoration: underline;
+  //font-size: 18px;
+  //line-height: 1.5;
+}
+
+dt {
+  font-size: 14px;
+}
+
+dd {
+  margin-bottom: 12px;
+}
+
 /////////////////////
 // Home Page Styles
 /////////////////////
@@ -122,6 +139,9 @@ ul.ui-autocomplete {
   }
 }
 
+.image-controls {
+  padding-top: 12px;
+}
 
 /////////////////////
 // Thumbnail Styles

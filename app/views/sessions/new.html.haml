@@ -4,7 +4,7 @@
   .span6.offset3.well
     = form_tag sessions_path do
       %fieldset
-        %legend.span6 Login to NYCorBUST
+        %legend Login to NYCorBUST
         .control-group
           = label_tag :email
           .controls
@@ -16,6 +16,6 @@
         .control-group
           - check_box = check_box_tag :remember, 1, false, class: "inline-checkbox"
           = label_tag :remember, "#{check_box}Remember me".html_safe, class: "control-label"
-        .control-group
-          = submit_tag "Login", class: "btn btn-large btn-primary"
+        .control-group.pull-right
+          = submit_tag "Login", class: "btn btn-large btn-success"
           = link_to "Cancel", root_path, class: "btn btn-large"
