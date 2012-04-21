@@ -1,0 +1,21 @@
+= provide :title, "Login"
+
+.row.login
+  .span6.offset3.well
+    = form_tag sessions_path do
+      %fieldset
+        %legend Login to NYCorBUST
+        .control-group
+          = label_tag :email
+          .controls
+            = text_field_tag :email, nil, class: "span6"
+        .control-group
+          = label_tag :password
+          .controls
+            = password_field_tag :password, nil, class: "span6"
+        .control-group
+          - check_box = check_box_tag :remember, 1, false, class: "inline-checkbox"
+          = label_tag :remember, "#{check_box}Remember me".html_safe, class: "control-label"
+        .control-group.pull-right
+          = submit_tag "Login", class: "btn btn-large btn-success"
+          = link_to "Cancel", root_path, class: "btn btn-large"

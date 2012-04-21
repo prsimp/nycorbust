@@ -1,0 +1,4 @@
+- flash.each do |key, msg|
+  .alert(class="alert-#{key}" data-alert="alert")
+    %a.close(data-dismiss="alert") &times;
+    = msg

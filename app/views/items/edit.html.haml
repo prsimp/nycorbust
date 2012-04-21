@@ -1,0 +1,32 @@
+= provide :title, "Edit #{@item.name}"
+
+.row
+  .span8.offset2
+    = form_for @item do |item|
+      = render 'shared/error_messages', object: item.object
+      %fieldset
+        %legend= "Edit #{@item.name}"
+        = render 'form_fields', :item => item
+
+        %legend Primary Item Image
+        .row.space-bottom
+          .span4
+            .thumbnail
+              = image_tag @item.primary_image(:medium), alt: @item.name
+          .span4
+            .control-group
+              = item.label :primary_image, "Choose new image", class: "control-label"
+              .controls
+                = item.file_field :primary_image
+
+        %legend Additional Item Images
+        = item.fields_for :item_images, :item_images, html: { multipart: true } do |image|
+          - if image.object.photo.file?
+            = render 'has_image', { :image => image, :item => item }
+          - else
+            = render 'no_image', :image => image
+
+        .main-controls
+          .pull-right
+            = item.submit "Save Changes", class: "btn btn-success btn-large"
+            = link_to "Cancel", items_path, class: "btn btn-large"

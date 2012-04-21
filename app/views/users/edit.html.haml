@@ -1,0 +1,27 @@
+= provide :title, "Edit User"
+
+.row
+  .span6.offset3.well
+    = form_for @user do |f|
+      = render 'shared/error_messages', object: f.object
+      %fieldset
+        %legend= "Edit #{@user.name}"
+        .control-group
+          = f.label :name
+          .controls
+            = f.text_field :name, class: "span6"
+        .control-group
+          = f.label :email
+          .controls
+            = f.email_field :email, class: "span6"
+        .control-group
+          = f.label :password
+          .controls
+            = f.password_field :password, class: "span6"
+        .control-group
+          = f.label :password_confirmation, "Confirm Password"
+          .controls
+            = f.password_field :password_confirmation, class: "span6"
+        .pull-right
+          = f.submit "Edit User", class: "btn btn-large btn-success"
+          = link_to "Cancel", users_path, class: "btn btn-large"

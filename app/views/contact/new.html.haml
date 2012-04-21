@@ -1,0 +1,34 @@
+= provide :title, "Contact Us!"
+
+.row.login
+  .span6.well
+    = form_tag contact_path do
+      %fieldset
+        %legend Contact NYCorBUST
+        .control-group
+          = label_tag :name
+          .controls
+            = text_field_tag :name, nil, class: "span6"
+        .control-group
+          = label_tag :email
+          .controls
+            = text_field_tag :email, nil, class: "span6"
+        .control-group
+          = label_tag :subject
+          .controls
+            = text_field_tag :subject, nil, class: "span6"
+        .control-group
+          = label_tag :message
+          .controls
+            = text_area_tag :message, nil, { class: "span6", rows: 10 }
+            = hidden_field_tag :item, params[:item]
+
+        .row
+          .span6
+            .pull-right
+              = submit_tag "Send Message", class: "btn btn-large btn-success"
+              = link_to "Cancel", root_path, class: "btn btn-large"
+
+  .span5.pull-right
+    %h2.faq-title Frequently Asked Questions
+    = render 'faqs'
