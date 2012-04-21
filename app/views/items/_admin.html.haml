@@ -12,7 +12,7 @@
       %tbody
         - items.each do |item|
           %tr
-            %td= link_to image_tag(item.display_image(:thumb), alt: item.name), item_path(item)
+            %td= link_to image_tag(item.primary_image(:thumb), alt: item.name), item_path(item)
             %td= item.name
             %td= item.description
             %td= item.category_name

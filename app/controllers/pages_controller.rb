@@ -4,5 +4,6 @@ class PagesController < ApplicationController
   end
 
   def admin
+    @items = Item.recently_added(6)
   end
 end

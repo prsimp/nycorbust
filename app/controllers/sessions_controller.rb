@@ -1,6 +1,5 @@
 class SessionsController < ApplicationController
 
-  #TODO: Change these paths once admin panel is created
   def new
     redirect_to admin_path, notice: "You are already signed in." if signed_in?
   end
@@ -10,7 +9,7 @@ class SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       sign_in(user, params[:remember])
       flash[:success] = "Successfully signed in!"
-      redirect_to users_path
+      redirect_to admin_path
     else
       flash.now[:error] = "Invalid email/password combination. Please try again"
       render 'new'

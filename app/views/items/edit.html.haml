@@ -9,7 +9,7 @@
         = render 'form_fields', :item => item
 
         %legend Primary Item Image
-        .row
+        .row.space-bottom
           .span4
             .thumbnail
               = image_tag @item.primary_image(:medium), alt: @item.name
@@ -18,7 +18,6 @@
               = item.label :primary_image, "Choose new image", class: "control-label"
               .controls
                 = item.file_field :primary_image
-        .item-image
 
         %legend Additional Item Images
         = item.fields_for :item_images, :item_images, html: { multipart: true } do |image|
@@ -31,5 +30,3 @@
           .pull-right
             = item.submit "Save Changes", class: "btn btn-success btn-large"
             = link_to "Cancel", items_path, class: "btn btn-large"
-= debug @item
-= debug @item.item_images

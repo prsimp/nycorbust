@@ -1,4 +1,4 @@
-= provide :title, @item.name
+= provide :title, @item.name.html_safe
 
 .page-header
   %h1= @item.name
@@ -12,8 +12,8 @@
       %p.description= @item.description
       %p.price= number_to_currency(@item.price, precision: 0)
       %p
-        = link_to "Inquire About This Item", "#", class: "btn btn-large btn-success"
-        = link_to "Back", "#", class: "btn btn-large"
+        = link_to "Inquire About This Item", contact_path(item: @item.name), class: "btn btn-large btn-success"
+        = link_to "Back", items_path, class: "btn btn-large"
       %p
         = link_to "See this item on Craigslist", @item.url
 
@@ -29,6 +29,3 @@
   .row
     - get_related_items(@item).each do |rel_item|
       = render 'related_item', :item => rel_item
-
-
-
