@@ -10,6 +10,10 @@
           = f.label :name, class: "control-label"
           .controls
             = f.text_field :name, class: "span8"
+        .control-group
+          = f.label :display_item_id, "Display Item"
+          .controls
+            = f.collection_select :display_item_id, @category_items, :id, :name
         .pull-right
           = f.submit "Save Changes", class: "btn btn-large btn-success"
           = link_to "Cancel", categories_path, class: "btn btn-large"
