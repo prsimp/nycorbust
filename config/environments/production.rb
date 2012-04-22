@@ -1,10 +1,13 @@
 Nycorbust::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
-  PAPERCLIP_STORAGE_OPTIONS = { storage: :s3,
-                                bucket: ENV['S3_BUCKET'],
+  PAPERCLIP_STORAGE_OPTIONS = { storage:          :s3,
+                                bucket:           ENV['S3_BUCKET'],
                                 s3_credentials: { access_key_id: ENV['S3_KEY'],
-                                                  secret_access_key: ENV['S3_SECRET'] }}
+                                                  secret_access_key: ENV['S3_SECRET'] },
+                                url:              ':s3_alias_url',
+                                s3_alias_url:     ENV['S3_ALIAS_URL'],
+                                path:             ":class/:attachment/:id_partition/:style/:filename"}
 
   # Action Mailer Settings
   config.action_mailer.delivery_method = :smtp

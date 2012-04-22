@@ -12,7 +12,7 @@ class ItemsController < ApplicationController
 
   def edit
     @item = Item.find(params[:id])
-    @item.build_images(@item.item_images.count)
+    @item.build_item_images
   end
 
   def update
@@ -27,7 +27,7 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new
-    @item.build_images
+    @item.build_item_images
   end
 
   def create
@@ -36,7 +36,7 @@ class ItemsController < ApplicationController
       flash[:success] = @item.name + " successfully added."
       redirect_to @item
     else
-      @item.rebuild_images
+      @item.rebuild_item_images
       render 'new'
     end
   end

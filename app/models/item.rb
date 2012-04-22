@@ -31,12 +31,6 @@ class Item < ActiveRecord::Base
   validates_attachment_size :primary_image,
     less_than: 3.megabytes
 
-  # Returns 'num' number of recently added items
-  def self.recently_added(num)
-    Item.order('created_at desc').limit(num)
-  end
-
-  # Getters and Setters for virtual element category_name
   def category_name
     category.try(:name)
   end
@@ -45,14 +39,12 @@ class Item < ActiveRecord::Base
     self.category = Category.find_or_create_by_name(name)
   end
 
-  # Builds item images up to a maximum of 4
-  def build_images(current_images = 0)
-    images_to_build = 3 - current_images
+  def build_item_images
+    images_to_build = 3 - self.item_images.count
     images_to_build.times { self.item_images.build }
   end
 
-  # Removes non-persisted ItemImages and recreates ItemImages on save failure
-  def rebuild_images
+  def rebuild_item_images
     self.item_images.destroy_all
     self.build_images(self.item_images.count)
   end
@@ -71,6 +63,10 @@ class Item < ActiveRecord::Base
     end
 
     images
+  end
+
+  def self.recently_added(num)
+    Item.order('created_at desc').limit(num)
   end
 
   def self.sample_by_category(categories)
