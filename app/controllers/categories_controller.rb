@@ -3,7 +3,6 @@ class CategoriesController < ApplicationController
 
   def index
     @categories = Category.order("name asc").all
-    @items = Item.sample_by_category(@categories)
   end
 
   def show
@@ -12,11 +11,12 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = Category.find(params[:id])
+    @category_items = Item.where("category_id = ?", @category.id)
     @categories = Category.all
   end
 
   def update
-    @category.find(params[:id])
+    @category = Category.find(params[:id])
     if @category.update_attributes(params[:category])
       flash[:success] = @category.name + " updated."
       redirect_to categories_path

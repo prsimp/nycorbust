@@ -9,6 +9,3 @@ jQuery ->
     img_src = $(this).find("img").attr("src").replace /small/, "large"
     $("#primary-image").attr("src", img_src).hide().fadeIn(100,"linear")
 
-# Preload images after page loads to improve transition
-#jQuery ->
-#  $(document).ready ->

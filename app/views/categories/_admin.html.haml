@@ -3,7 +3,7 @@
     %table.table.table-bordered
       %thead
         %tr
-          %th Image
+          %th.span1 Image
           %th Name
           %th # Items
           %th Listed Items
@@ -12,12 +12,12 @@
         - @categories.each do |category|
           %tr
             %td
-              - if @items.has_key?(category.id)
-                = link_to image_tag(@items[category.id].primary_image(:thumb), alt: category.name), category_path(category)
+              - if category.items.empty?
+                = link_to image_tag("default_thumb.jpg", alt: category.name), category_path(category)
               - else
-                = link_to image_tag("default.jpg", alt: category.name), category_path(category)
+                = link_to image_tag(category.category_image(:thumb), alt: category.name), category_path(category)
             %td= category.name
             %td= category.items.count
             %td= category.items.map(&:name).join(", ")
-            %td= link_to "View", category_path(category), class: "btn btn-primary"
-            %td= link_to "Edit", edit_category_path(category), class: "btn"
+            %td.span1= link_to "View", category_path(category), class: "btn btn-primary"
+            %td.span1= link_to "Edit", edit_category_path(category), class: "btn"

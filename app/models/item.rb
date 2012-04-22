@@ -69,14 +69,4 @@ class Item < ActiveRecord::Base
     Item.order('created_at desc').limit(num)
   end
 
-  def self.sample_by_category(categories)
-    items = Hash.new
-    categories.each do |cat|
-      item = Item.find_by_category_id(cat.id)
-      items[cat.id] = item unless item.nil?
-    end
-
-    items
-  end
-
 end

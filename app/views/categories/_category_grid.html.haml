@@ -3,10 +3,10 @@
     .span12
       %ul.thumbnails
         - category_row.each do |category|
-          %li.span4
-            %a.item_display(href="/categories/#{category.id}")
-              .thumbnail.thumb
-                - if @items.has_key?(category.id)
-                  = image_tag @items[category.id].primary_image(:medium), alt: category.name
+          - unless category.items.empty?
+            %li.span4
+              %a.item_display(href="/categories/#{category.id}")
+                .thumbnail.thumb
+                  = image_tag category.category_image(:medium), alt: category.name
                   .caption
                     %h4= category.name
