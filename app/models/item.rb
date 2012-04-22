@@ -7,6 +7,7 @@ class Item < ActiveRecord::Base
   attr_accessible :name,
                   :description,
                   :price,
+                  :sold,
                   :url,
                   :category_id,
                   :category_name,

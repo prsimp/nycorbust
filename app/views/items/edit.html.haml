@@ -6,6 +6,10 @@
       = render 'shared/error_messages', object: item.object
       %fieldset
         %legend= "Edit #{@item.name}"
+        .control-group
+          - sold_check_box = item.check_box :sold, class: "inline-checkbox"
+          = item.label :sold, "#{sold_check_box}Item has been sold.".html_safe, class: "control-label"
+
         = render 'form_fields', :item => item
 
         %legend Primary Item Image

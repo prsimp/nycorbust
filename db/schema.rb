@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120422133906) do
+ActiveRecord::Schema.define(:version => 20120422205811) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -38,12 +38,13 @@ ActiveRecord::Schema.define(:version => 20120422133906) do
     t.integer  "category_id"
     t.decimal  "price",                      :precision => 8, :scale => 2
     t.string   "url"
-    t.datetime "created_at",                                               :null => false
-    t.datetime "updated_at",                                               :null => false
+    t.datetime "created_at",                                                                  :null => false
+    t.datetime "updated_at",                                                                  :null => false
     t.string   "primary_image_file_name"
     t.string   "primary_image_content_type"
     t.integer  "primary_image_file_size"
     t.datetime "primary_image_updated_at"
+    t.boolean  "sold",                                                     :default => false
   end
 
   add_index "items", ["category_id"], :name => "index_items_on_category_id"
