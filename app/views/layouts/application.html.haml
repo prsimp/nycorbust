@@ -3,8 +3,6 @@
   %head
     %title= full_title(yield(:title))
     = stylesheet_link_tag "application", media: "all"
-    - if controller_stylesheet?(controller.controller_name)
-      = stylesheet_link_tag controller.controller_name, media: "all"
     = javascript_include_tag "application"
     = csrf_meta_tags
 

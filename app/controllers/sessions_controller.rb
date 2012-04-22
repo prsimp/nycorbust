@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_filter :authorized_user, except: :destroy
 
   def new
     redirect_to admin_path, notice: "You are already signed in." if signed_in?
