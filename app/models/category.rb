@@ -2,6 +2,7 @@ class Category < ActiveRecord::Base
   has_many :items
 
   default_scope order("name asc")
+  scope :with_available_items, joins(:items).where("items.sold != ?", true).uniq
 
   attr_accessible :name, :display_item_id
 

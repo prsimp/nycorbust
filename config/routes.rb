@@ -4,7 +4,7 @@ Nycorbust::Application.routes.draw do
   resources :items, only: [:index, :show]
 
   namespace :admin do
-    resources :categories, except: [:show, :destroy]
+    resources :categories, except: :destroy
     resources :items, except: :show
   end
 
