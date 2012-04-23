@@ -4,6 +4,10 @@ class Item < ActiveRecord::Base
 
   accepts_nested_attributes_for :item_images, reject_if: :all_blank, allow_destroy: true
 
+  scope :by_name, order("name asc")
+  scope :available, where("sold != ?", true)
+  scope :recent, lambda { |num| order("created_at desc").limit(num)}
+
   attr_accessible :name,
                   :description,
                   :price,
@@ -38,6 +42,10 @@ class Item < ActiveRecord::Base
 
   def category_name=(name)
     self.category = Category.find_or_create_by_name(name)
+  end
+
+  def sold_yn?
+    self.sold? ? "Yes" : "No"
   end
 
   def build_item_images

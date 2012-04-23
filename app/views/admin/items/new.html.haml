@@ -1,8 +1,8 @@
-= provide :title, "New Item"
+= provide :title, "Admin | New Item"
 
 .row
   .span8.offset2
-    = form_for @item do |item|
+    = form_for [:admin, @item] do |item|
       = render 'shared/error_messages', object: item.object
       %fieldset
         %legend Add New Item
@@ -23,4 +23,4 @@
         .main-controls
           .pull-right
             = item.submit "Add Item", class: "btn btn-success btn-large"
-            = link_to "Cancel", items_path, class: "btn btn-large"
+            = link_to "Cancel", admin_items_path, class: "btn btn-large"

@@ -1,8 +1,8 @@
-= provide :title, "New Category"
+= provide :title, "Admin | New Category"
 
 .row
   .span8.offset2
-    = form_for @category do |f|
+    = form_for [:admin, @category] do |f|
       = render 'shared/error_messages', object: f.object
       %fieldset
         %legend Add New Category
@@ -12,9 +12,9 @@
             = f.text_field :name, class: "span8"
         .pull-right
           = f.submit "Create Category", class: "btn btn-large btn-success"
-          = link_to "Cancel", categories_path, class: "btn btn-large"
+          = link_to "Cancel", admin_categories_path, class: "btn btn-large"
 
     %h3 Current Categories
     %ul.unstyled
-      - @categories.each do |cat|
+      - Category.all.each do |cat|
         %li= cat.name

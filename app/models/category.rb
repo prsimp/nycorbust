@@ -1,6 +1,8 @@
 class Category < ActiveRecord::Base
   has_many :items
 
+  default_scope order("name asc")
+
   attr_accessible :name, :display_item_id
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }
