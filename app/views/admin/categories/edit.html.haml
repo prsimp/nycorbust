@@ -1,0 +1,24 @@
+= provide :title, "Admin | Edit #{@category.name}"
+
+.row
+  .span8.offset2
+    = form_for [:admin, @category] do |f|
+      = render 'shared/error_messages', object: f.object
+      %fieldset
+        %legend Edit Category
+        .control-group
+          = f.label :name, class: "control-label"
+          .controls
+            = f.text_field :name, class: "span8"
+        .control-group
+          = f.label :display_item_id, "Display Item"
+          .controls
+            = f.collection_select :display_item_id, @category.items, :id, :name
+        .pull-right
+          = f.submit "Save Changes", class: "btn btn-large btn-success"
+          = link_to "Cancel", admin_categories_path, class: "btn btn-large"
+
+    %h3 Current Categories
+    %ul.unstyled
+      - Category.all.each do |cat|
+        %li= cat.name

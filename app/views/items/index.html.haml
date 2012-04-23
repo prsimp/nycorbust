@@ -5,10 +5,7 @@
     All Items
     - if signed_in?
       %span.pull-right
-        = link_to "Add Item", new_item_path, class: "btn btn-success"
+        = link_to "Admin View", admin_items_path, class: "btn" if signed_in?
+        = link_to "Add Item", new_admin_item_path, class: "btn btn-success"
 
-
-- if signed_in?
-  = render 'admin', :items => @items
--else
-  = render 'shared/image_grid', :items => @items
+= render 'shared/image_grid', :items => @items

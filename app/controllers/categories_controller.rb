@@ -1,44 +1,21 @@
 class CategoriesController < ApplicationController
-  skip_before_filter :authorized_user, only: [:index, :show]
+  skip_before_filter :authorized_user
+  before_filter :no_available_items, only: :show
 
   def index
-    @categories = Category.order("name asc").all
-    @items = Item.sample_by_category(@categories)
+    @categories = Category.with_available_items
   end
 
   def show
     @category = Category.find(params[:id])
   end
 
-  def edit
-    @category = Category.find(params[:id])
-    @categories = Category.all
-  end
+  protected
 
-  def update
-    @category.find(params[:id])
-    if @category.update_attributes(params[:category])
-      flash[:success] = @category.name + " updated."
-      redirect_to categories_path
-    else
-      @categories = Category.all
-      render 'edit'
-    end
-  end
-
-  def new
-    @category = Category.new
-    @categories = Category.all
-  end
-
-  def create
-    @category = Category.new(params[:category])
-    if @category.save
-      flash[:success] = "#{@category.name} category created."
-      redirect_to categories_path
-    else
-      @categories = Category.all
-      render 'new'
+  def no_available_items
+    if Category.find(params[:id]).items.available.count == 0
+      flash[:alert] = "That category has no available items."
+      redirect_to categories_path and return false
     end
   end
 end

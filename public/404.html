@@ -1,26 +1,34 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>The page you were looking for doesn't exist (404)</title>
-  <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
-    }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-  </style>
-</head>
-
-<body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
-  </div>
-</body>
+  <head>
+    <title>Page Not Found | NYCorBUST</title>
+    <link href="/assets/application.css?body=1" media="all" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class='navbar'>
+      <div class='navbar-inner'>
+        <div class='container'>
+          <a href="/" class="brand"><img alt="NYCorBUST" src="/assets/logo.jpg" /></a>
+          <ul class='nav pull-right'>
+            <li><a href="/items">All Items</a></li>
+            <li><a href="/categories">By Category</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class='container'>
+      <div class='page-header'>
+        <div class='hero-unit'>
+          <h1>Page Not Found</h1>
+          <p class='cta'>
+            Sorry &mdash; we can't seem to locate the page you're looking for.
+            We probably goofed something up on our end. While we try and figure
+            out what happened, why don't you take a look at the rest of the site!
+          </p>
+          <p><a href="/items" class="btn btn-large btn-success">View All Items</a></p>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

@@ -2,7 +2,7 @@
 
 .row
   .span8.offset2
-    = form_for @item do |item|
+    = form_for [:admin, @item] do |item|
       = render 'shared/error_messages', object: item.object
       %fieldset
         %legend= "Edit #{@item.name}"
@@ -31,6 +31,7 @@
             = render 'no_image', :image => image
 
         .main-controls
+          = link_to "Delete Item", admin_item_path(@item), method: :delete, confirm: "Are you sure?", class: "btn btn-large btn-danger"
           .pull-right
             = item.submit "Save Changes", class: "btn btn-success btn-large"
-            = link_to "Cancel", items_path, class: "btn btn-large"
+            = link_to "Cancel", admin_items_path, class: "btn btn-large"

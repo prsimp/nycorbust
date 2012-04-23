@@ -2,10 +2,10 @@ class PagesController < ApplicationController
   skip_before_filter :authorized_user, only: :home
 
   def home
-    @items = Item.recently_added(3)
+    @items = Item.available.recent(3)
   end
 
   def admin
-    @items = Item.recently_added(6)
+    @items = Item.recent(6)
   end
 end

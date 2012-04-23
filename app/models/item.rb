@@ -4,9 +4,14 @@ class Item < ActiveRecord::Base
 
   accepts_nested_attributes_for :item_images, reject_if: :all_blank, allow_destroy: true
 
+  scope :by_name, order("name asc")
+  scope :available, where("sold != ?", true)
+  scope :recent, lambda { |num| order("created_at desc").limit(num)}
+
   attr_accessible :name,
                   :description,
                   :price,
+                  :sold,
                   :url,
                   :category_id,
                   :category_name,
@@ -31,12 +36,6 @@ class Item < ActiveRecord::Base
   validates_attachment_size :primary_image,
     less_than: 3.megabytes
 
-  # Returns 'num' number of recently added items
-  def self.recently_added(num)
-    Item.order('created_at desc').limit(num)
-  end
-
-  # Getters and Setters for virtual element category_name
   def category_name
     category.try(:name)
   end
@@ -45,14 +44,16 @@ class Item < ActiveRecord::Base
     self.category = Category.find_or_create_by_name(name)
   end
 
-  # Builds item images up to a maximum of 4
-  def build_images(current_images = 0)
-    images_to_build = 3 - current_images
+  def sold_yn?
+    self.sold? ? "Yes" : "No"
+  end
+
+  def build_item_images
+    images_to_build = 3 - self.item_images.count
     images_to_build.times { self.item_images.build }
   end
 
-  # Removes non-persisted ItemImages and recreates ItemImages on save failure
-  def rebuild_images
+  def rebuild_item_images
     self.item_images.destroy_all
     self.build_images(self.item_images.count)
   end
@@ -73,14 +74,8 @@ class Item < ActiveRecord::Base
     images
   end
 
-  def self.sample_by_category(categories)
-    items = Hash.new
-    categories.each do |cat|
-      item = Item.find_by_category_id(cat.id)
-      items[cat.id] = item unless item.nil?
-    end
-
-    items
+  def self.recently_added(num)
+    Item.order('created_at desc').limit(num)
   end
 
 end
