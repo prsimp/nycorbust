@@ -5,9 +5,8 @@
     Items By Category
     - if signed_in?
       %span.pull-right
-        = link_to "Add Categoy", new_category_path, class: "btn btn-success"
+        = link_to "Admin View", admin_categories_path, class: "btn"
+        = link_to "Add Categoy", new_admin_category_path, class: "btn btn-success"
 
-- if signed_in?
-  = render 'admin'
-- else
-  = render 'category_grid'
+
+= render 'category_grid'
