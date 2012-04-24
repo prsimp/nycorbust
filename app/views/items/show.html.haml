@@ -22,8 +22,9 @@
       %p
         = link_to "Inquire About This Item", contact_path(item: @item.name), class: "btn btn-large btn-success"
         = link_to "Back", items_path, class: "btn btn-large"
-      %p
-        = link_to "See this item on Craigslist", @item.url
+      - if !@item.url.blank?
+        %p
+          = link_to "See this item on Craigslist", @item.url
 
   - if @item.has_many_images?
     .row
