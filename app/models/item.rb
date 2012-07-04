@@ -74,8 +74,7 @@ class Item < ActiveRecord::Base
     images
   end
 
-  def self.recently_added(num)
-    Item.order('created_at desc').limit(num)
+  def related_items
+    Item.where("category_id = ? AND id != ?", self.category_id, self.id).limit(6)
   end
-
 end

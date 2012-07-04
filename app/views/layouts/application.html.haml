@@ -10,7 +10,7 @@
     .navbar
       .navbar-inner
         .container
-          = link_to image_tag("logo.jpg", alt: "NYCorBUST"), root_path, class: "brand"
+          = link_to image_tag("logo.png", alt: "NYCorBUST"), root_path, class: "brand", height: "40px", width:"288px"
           %ul.nav.pull-right
             %li= link_to "All Items", items_path
             %li= link_to "By Category", categories_path
@@ -19,6 +19,7 @@
               %li= link_to "Admin", admin_path
               %li= link_to "Logout", logout_path
     .container
+      .alert.alert-info.main-alert This site is not longer active. All NYCorBUST items have been sold. The site remains in place for display purposes only.
       = render 'shared/flash_messages'
       = yield
 

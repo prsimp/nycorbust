@@ -9,7 +9,7 @@
 .control-group
   = item.label :category_name, "Category", class: "control-label"
   .controls
-    = item.text_field :category_name, { class: "span8", data: {autocomplete_src: Category.order(:name).map(&:name)}}
+    = item.text_field :category_name, { class: "span8", data: { provide: 'typeahead', items: '4', source: Category.order(:name).map(&:name) }}
 .row
   .span4
     .control-group

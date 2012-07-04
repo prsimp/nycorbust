@@ -12,10 +12,17 @@
 
 
 .page-header
-  .row.space-bottom
-    .span8.primary-image
-      .thumbnail
-        = image_tag @item.primary_image(:large), id: "primary-image", alt: @item.name
+  .row
+    .span8
+      .row.space-bottom
+        .span8
+          .thumbnail.primary-image
+            = image_tag @item.primary_image(:large), id: "primary-image", alt: @item.name
+      - if @item.has_many_images?
+        .row
+          - @item.all_images.each do |image|
+            = render 'thumbnail', :image => image
+
     .span4
       %p.description= @item.description
       %p.price= number_to_currency(@item.price, precision: 0)
@@ -26,15 +33,11 @@
         %p
           = link_to "See this item on Craigslist", @item.url
 
-  - if @item.has_many_images?
-    .row
-      - @item.all_images.each do |image|
-        = render 'thumbnail', :image => image
 
 
 - if Category.has_many_items?(@item.category_id)
   .page-header
     %h2= "Other Items in #{@item.category_name}"
   .row
-    - get_related_items(@item).each do |rel_item|
+    - @item.related_items.each do |rel_item|
       = render 'related_item', :item => rel_item

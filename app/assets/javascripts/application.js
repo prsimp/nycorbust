@@ -11,8 +11,7 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery-ui
 //= require jquery_ujs
 //= require bootstrap-alert
-//= require bootstrap-collapse
+//= require bootstrap-typeahead
 //= require items
