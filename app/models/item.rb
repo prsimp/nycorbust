@@ -32,9 +32,6 @@ class Item < ActiveRecord::Base
     length: { maximum: 45 }
   validates :price,
     numericality: { greater_than: 0 }
-  validates_attachment_presence :primary_image
-  validates_attachment_size :primary_image,
-    less_than: 3.megabytes
 
   def category_name
     category.try(:name)
