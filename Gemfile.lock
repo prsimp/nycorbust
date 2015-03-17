@@ -156,7 +156,7 @@ DEPENDENCIES
   jquery-rails
   paperclip (~> 3.0)
   pg
-  rails (~> 3.2.11)
+  rails
   rspec-rails (~> 2.9.0)
   sass-rails (~> 3.2.3)
   sqlite3
